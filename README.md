@@ -135,6 +135,7 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 | 5.8e-22		| Go straight or right     			|
 
 For the second image
+
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.99         		| Stop  					| 
@@ -144,6 +145,7 @@ For the second image
 | 6.7e-7		| Speed limit (20km/h)     			|
 
 For the third image
+
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.97         		| End of speed limit (80km/h)  			| 
@@ -153,6 +155,7 @@ For the third image
 | 1.1e-5		| End of all speed and passing limits 		|
 
 For the fourth image
+
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.97         		| Go straight or left 				| 
@@ -162,6 +165,7 @@ For the fourth image
 | 1.1e-5		| Yield     					|
 
 For the fifth image
+
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.98         		| Go straight or right  			| 
