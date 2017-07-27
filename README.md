@@ -83,14 +83,28 @@ It's trained with Adamoptimizer. And by splitting the data by batch_size, It was
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* cost = 0.012
-* validation set accuracy of 0.953 
-* test set accuracy of 0.936
+* cost = 0.013
+* validation set accuracy of 0.949
+* test set accuracy of 0.942
 
+
+
+* What was the first architecture that was tried and why was it chosen?
 At first, I simply designed the conv layer to be deeper and wider for good accuracy.
-But unlike expectations, I couldn't get much better results than I thought.
 
-So I designed the conv layer a little shallower and narrower, applied max pooling and applied dropout to the fully connected layer. I wanted to apply it to an ensemble, but I did not apply it because I had a lot of other things to do.
+* What were some problems with the initial architecture?
+But unlike expectations, I couldn't get much better results than I thought.
+Maybe it's because of 'Internal Covariate Shift'.
+
+* How was the architecture adjusted and why was it adjusted?
+Because of internal covariate shift, I should to use batch normalization or make neural network more shallower and narrower. I adopted the later one.
+
+* Which parameters were tuned? How were they adjusted and why?
+I tuned weights with xavier_initializer and dropout for good learning. 
+
+* What are some of the important design choices and why were they chosen?
+I used relu as the activation function. When solving a lot of simple problems, it is possible to do efficient learning with relu even if you do not use elu or selu.
+Also, the optimizer used adam_optimizer. It is possible to efficiently learn by learning the data little by little (batch_size = 100).
 
 ###Test a Model on New Images
 
@@ -101,8 +115,6 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image1] ![alt text][image2] ![alt text][image3] 
 ![alt text][image4] ![alt text][image5]
 
-The third image might be difficult to classify because my network confused it as 80.
-
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
@@ -111,65 +123,65 @@ Here are the results of the prediction:
 |:-----------------------------:|:-------------------------------------:| 
 | No entry      		| No entry 				| 
 | Stop    			| Stop					|
-| Speed limit (60km/h)	   	| Speed limit (80km/h)			|
+| Speed limit (60km/h)	   	| Speed limit (60km/h)			|
 | Go straight or left	      	| Go straight or left			|
 | Go straight or right		| Go straight or right 			|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. 
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the top five soft max probabilities were
 
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
 | 1         		| No entry  					| 
-| 4.7e-15     		| stop	 					|
-| 2.2e-17		| Speed limit (20km/h)				|
-| 2.2e-19     		| Speed limit (120km/h)				|
-| 5.8e-22		| Go straight or right     			|
+| 1.1e-25     		| stop	 					|
+| 2.5e-28		| Yield						|
+| 5.9e-31     		| End of all speed and passing limits		|
+| 2.8e-33		| Speed limit (120km/h)     			|
 
 For the second image
 
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.99         		| Stop  					| 
-| 2.3e-5     		| Speed limit (70km/h)	 					|
-| 1.2e-5		| Speed limit (80km/h)				|
-| 9.9e-7     		| Turn right ahead				|
-| 6.7e-7		| Speed limit (20km/h)     			|
+| 0.84         		| Stop  					| 
+| 0.13     		| Yield	 					|
+| 7.6e-3		| No vehicles					|
+| 4.4e-5     		| Speed limit (50km/h)				|
+| 2.1e-6		| Speed limit (60km/h)     			|
 
 For the third image
 
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.97         		| End of speed limit (80km/h)  			| 
-| 0.02     		| Speed limit (30km/h)	 			|
-| 5.7e-3		| Speed limit (60km/h)				|
-| 2.4e-4     		| Keep right					|
-| 1.1e-5		| End of all speed and passing limits 		|
+| 0.99         		| Speed limit (60km/h)  			| 
+| 1.0e-5     		| Speed limit (80km/h)	 			|
+| 2.2e-7		| End of speed limit (80km/h)			|
+| 2.0e-8     		| Speed limit (50km/h)				|
+| 2.4e-9		| Speed limit (30km/h)		 		|
 
 For the fourth image
 
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.97         		| Go straight or left 				| 
-| 2.7e-2     		| Ahead only 					|
-| 5.7e-3		| Keep left					|
-| 2.4e-4     		| Priority road					|
-| 1.1e-5		| Yield     					|
+| 0.98         		| Go straight or left 				| 
+| 1.4e-2     		| No entry 					|
+| 1.3e-5		| Keep left					|
+| 6.8e-8     		| Roundabout mandatory				|
+| 6.8e-12		| Ahead only     				|
 
 For the fifth image
 
 | Probability         	|     Prediction	       			| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.98         		| Go straight or right  			| 
-| 1.8e-2     		| Keep right	 				|
-| 2.2e-6		| End of all speed and passing limits		|
-| 6.1e-7     		| Priority road					|
-| 4.0e-8		| No entry		     			|
+| 0.80         		| Go straight or right  			| 
+| 0.15     		| No entry	 				|
+| 0.05			| Keep right					|
+| 8.5e-4     		| End of all speed and passing limits		|
+| 7.6e-4		| End of no passing	     			|
 
 
