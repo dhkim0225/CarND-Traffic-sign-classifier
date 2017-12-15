@@ -68,7 +68,9 @@ The model was able to correctly guess 5 of the 5 traffic signs, which gives an a
 
 #### top-5 test output
 
-For the **first image**, the top five soft max probabilities were
+*****
+
+![alt text][image1]
 
 | Probability  | Prediction                           | 
 |:------------:|:------------------------------------:| 
@@ -78,7 +80,9 @@ For the **first image**, the top five soft max probabilities were
 | 5.9e-31      | End of all speed and passing limits  |
 | 2.8e-33      | Speed limit (120km/h)                |
 
-For the **second image**
+*****
+
+![alt text][image2]
 
 | Probability | Prediction           | 
 |:-----------:|:--------------------:| 
@@ -88,7 +92,9 @@ For the **second image**
 | 4.4e-5      | Speed limit (50km/h) |
 | 2.1e-6      | Speed limit (60km/h) |
 
-For the **third image**
+*****
+
+![alt text][image3]
 
 | Probability | Prediction                  | 
 |:-----------:|:---------------------------:| 
@@ -98,7 +104,9 @@ For the **third image**
 | 2.0e-8      | Speed limit (50km/h)        |
 | 2.4e-9      | Speed limit (30km/h)        |
 
-For the **fourth image**
+*****
+
+![alt text][image4]
 
 | Probability | Prediction           | 
 |:-----------:|:--------------------:| 
@@ -108,7 +116,9 @@ For the **fourth image**
 | 6.8e-8      | Roundabout mandatory |
 | 6.8e-12     | Ahead only           |
 
-For the **fifth image**
+*****
+
+![alt text][image5]
 
 | Probability | Prediction                          | 
 |:-----------:|:-----------------------------------:| 
@@ -117,3 +127,5 @@ For the **fifth image**
 | 0.05	      | Keep right                          |
 | 8.5e-4      | End of all speed and passing limits |
 | 7.6e-4      | End of no passing                   |
+
+*****
